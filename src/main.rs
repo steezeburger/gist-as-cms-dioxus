@@ -15,7 +15,6 @@ fn main() {
     dioxus_web::launch(App);
 }
 
-// create a component that renders a div with the text "Hello, world!"
 fn App(cx: Scope) -> Element {
     let get_gist = use_future(cx, (), |_| async move {
         reqwest::get(format!("{}{}", GIST_API_URL, GIST_ID))
@@ -27,11 +26,11 @@ fn App(cx: Scope) -> Element {
 
     cx.render(match get_gist.value() {
         Some(Ok(response)) => rsx! {
-        div {
-            p {format!("{:#?}", response)}
-        }
-    },
-        Some(Err(_)) => rsx! { div { "Loading failed" } },
-        None => rsx! { div { "Loading..." } },
+            div {
+                p {format!("{:#?}", response)}
+            }
+        },
+        Some(Err(_)) => rsx! { div { "Fetch failed" } },
+        None => rsx! { div { "Fetching..." } },
     })
 }
