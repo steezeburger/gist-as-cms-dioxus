@@ -7,6 +7,6 @@ a proof of concept for using gists as storage for a blog.
 requires dioxus-cli
 
 ```bash 
-cargo install dixous-cli
-dixous serve
+cargo install dioxus-cli
+dioxus serve
 ```
